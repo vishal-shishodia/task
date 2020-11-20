@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<style>
+		* {
+            top: 0;
+            left: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(222 213 243);
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+        }
+		.form-group {
+            background-color: #f2f2f2;
+            padding: 12px;
+            border-radius: 12px;
+            width: 75vw;
+
+        }
+		input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+		.row {
+            display: flex;
+
+        }
+
+        .col-25 {
+            width: 20%;
+            /* text-align: left; */
+            margin: 6px;
+        }
+
+        .col-75 {
+            width: 80%;
+            /* text-align: left; */
+            margin: 6px;
+        }
+		.btn-primary {
+            background-color: #5fadda;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+        }
+	</style>
+</head>
+<body>
+	<div class="container">
+	<form method='post' enctype='multipart/form-data'>
+		{% csrf_token %}
+		<div class="form-group">
+			<div class="row">
+				<div class="col-25">{{form1.username.label_tag}}</div>
+				<div class="col-75">{{form1.username}}</div>
+				
+			</div>
+			{% for error in form1.username.errors %}
+				<p style='color:red;'>{{error}}</p>
+
+			{% endfor %}
+			<div class="row">
+				<div class="col-25">{{form1.password1.label_tag}}</div>
+				<div class="col-75">{{form1.password1}}</div>
+				
+			</div>
+			{% for error in form1.password1.errors %}
+				<p style='color:red;'>{{error}}</p>
+
+			{% endfor %}
+			<div class="row">
+				<div class="col-25">{{form1.password2.label_tag}}</div>
+				<div class="col-75">{{form1.password2}}</div>
+				
+			</div>
+			{% for error in form1.password2.errors %}
+				<p style='color:red;'>{{error}}</p>
+
+			{% endfor %}
+			<div class="row">
+				<div class="col-25">{{form2.mobile.label_tag}}</div>
+				<div class="col-75">{{form2.mobile}}</div>
+				
+			</div>
+			{% for error in form2.mobile.errors %}
+				<p style='color:red;'>{{error}}</p>
+
+			{% endfor %}
+			<div class="row">
+				<div class="col-25">{{form2.address.label_tag}}</div>
+				<div class="col-75">{{form2.address}}</div>
+				
+			</div>
+			{% for error in form2.address.errors %}
+				<p style='color:red;'>{{error}}</p>
+
+			{% endfor %}
+			<button class="btn-primary" type="submit">Register</button>
+		</div>
+	<!-- {% for field in form1 %}
+	<p>
+			{{field.label_tag}}
+			{{field}}
+			{% if field.help_text %}
+				<small style="color:red;">{{field.help_text}}</small>
+			{% endif %}
+
+			{% for error in field.errors %}
+				<p style='color:red;'>{{error}}</p>
+
+			{% endfor %}
+		</p>
+{% endfor %}
+
+{{form2.media}}
+{{form2.as_p}}
+<button type='submit'>Register</button> -->
+</form>
+
+</div>
+</body>
+</html>

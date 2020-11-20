@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add item</title>
+    <style>
+        * {
+            top: 0;
+            left: 0;
+        }
+
+        .container {
+            background-color: rgb(222 213 243);
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-left: 302px;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        form button {
+            margin-left: 138px;
+        }
+
+        .btn-primary {
+            background-color: #5fadda;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+        }
+
+        .form-group {
+            background-color: #f2f2f2;
+            padding: 12px;
+            border-radius: 12px;
+            width: 50%;
+
+        }
+
+        input[type=text],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            /* resize: vertical; */
+            box-sizing: border-box;
+            height: 200px;
+        }
+
+        .row {
+            display: flex;
+
+        }
+
+        .col-25 {
+            width: 20%;
+            /* text-align: left; */
+            margin: 6px;
+        }
+
+        .col-75 {
+            width: 80%;
+            /* text-align: left; */
+            margin: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome {{request.user.username}}</h1>
+        <h2>{{title}} an item</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {% csrf_token %}
+        {{form.name.label}}
+        <input type="text" name="{{form.name.name}}" >
+        {{form.category.label}}
+        <input type="text" name="{{form.category.name}}">
+        {{form.price_range.label}}
+        <input type="text" name="{{form.price_range.name}}">
+        {{form.description.label}}
+        <textarea name="{{form.description.name}}" id="" cols="30" rows="10"/></textarea>
+        {{form.comment.label}}
+        <textarea name="{{form.comment.name}}" id="" cols="30" rows="10"./></textarea>
+        
+        {{form.image}} -->
+            <!-- <input type="image" name="{{form.image.name}}" src="{{form.image}}" /> -->
+            <!-- {{form.as_p}} -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-25">{{form.name.label_tag}}</div>
+                    <div class="col-75">{{form.name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-25">{{form.category.label_tag}}</div>
+                    <div class="col-75">{{form.category}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-25">{{form.price_range.label_tag}}</div>
+                    <div class="col-75">{{form.price_range}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-25">{{form.description.label_tag}}</div>
+                    <div class="col-75">{{form.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-25">{{form.comment.label_tag}}</div>
+                    <div class="col-75">{{form.comment}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-25">{{form.image.label_tag}}</div>
+                    <div class="col-75">{{form.image}}</div>
+                </div>
+                <button class="btn-primary" type="submit">Add Item</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

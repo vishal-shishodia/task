@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchant Home</title>
+    <style>
+        * {
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: rgb(222 213 243);
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            /* display: flex; */
+        }
+
+        h2 {
+            font-size: 48px;
+            text-align: center;
+        }
+
+        .table-group {
+            display: flex;
+            align-items: center;
+            background-color: #f2f2f2;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 29px;
+            width: 75vw;
+        }
+
+        tr {
+            width: 80vw;
+            display: flex;
+
+        }
+
+        td {
+            width: 25%;
+            margin: 6px;
+        }
+
+        th {
+            width: 25%;
+            margin: 6px;
+            text-align: start;
+
+        }
+
+        #additem-link a {
+            text-decoration: none;
+            background-color: #5fadda;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+            width: 88px;
+        }
+
+
+
+        #additem-link {
+            margin: 20px;
+            margin-left: 29px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome {{request.user.username}}</h3>
+            <div id="additem-link"><a href="{% url 'additem' %}">Add Item</a></div>
+
+            <div class="table-group">
+                <table>
+                    <tr>
+                        <th>Item name</th>
+                        <th>Added on</th>
+                        <th>Edit Item</th>
+                        <th>Delete item</th>
+            
+                    </tr>
+                   
+                    {% for item in items %}
+                    <div class="row">
+                        <tr>
+                            <td>
+                                <div>
+                                    {{item.name}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-25">
+                                    {{item.created_on|timesince}} ago
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-25">
+                                    <a href="{% url 'edititem' item.pk %}">Edit Item</a>
+                                </div>
+                            
+                            </td>
+                            <td>
+                           <div class="col-25">
+                                <a href="{% url 'delete' item.pk %}">Delete Item</a>
+                            </div>
+                            </td>
+                        </tr>
+
+                    </div>
+                    {% endfor %}
+                </table>
+            </div>
+    </div>
+</body>
+
+</html>
